@@ -33,7 +33,7 @@ public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHol
     String nm,tlp;
 
         nm = listdata.get(position).getNama();
-        tlp = listdata.get(position).getTelpon();
+        tlp = listdata.get(position).getTelepon();
 
 
         holder.namaTxt.setText(nm);

@@ -32,7 +32,7 @@ public class DBController extends SQLiteOpenHelper {
         SQLiteDatabase basisdata = this.getWritableDatabase();
         ContentValues nilai = new ContentValues();
         nilai.put("nama",queryValues.get("nama"));
-        nilai.put("telpon",queryValues.get("telpon"));
+        nilai.put("telepon",queryValues.get("telepon"));
         basisdata.insert("teman", null,nilai);
         basisdata.close();
     }
@@ -48,7 +48,7 @@ public class DBController extends SQLiteOpenHelper {
                 HashMap<String,String> map = new HashMap<>();
                 map.put("id",cursor.getString(0));
                 map.put("nama",cursor.getString(1));
-                map.put("telpon" ,cursor.getString(2));
+                map.put("telepon" ,cursor.getString(2));
                 daftarTeman.add(map);
             }while (cursor.moveToNext());
         }

@@ -41,7 +41,7 @@ public class TemanBaru extends AppCompatActivity {
 
                     HashMap<String,String> qValues = new HashMap<>();
                     qValues.put("nama", nm);
-                    qValues.put("telpon",tlp);
+                    qValues.put("telepon",tlp);
 
                     controller.insertData(qValues);
                     callHome();
