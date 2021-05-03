@@ -37,12 +37,28 @@ public class DBController extends SQLiteOpenHelper {
         basisdata.close();
     }
 
+    public void deleteData(HashMap<String,String> queryVal){
+        SQLiteDatabase basisdata = getWritableDatabase();
+        basisdata.delete("teman","nama=?",new String[]{queryVal.get("nama")});
+        basisdata.close();
+    }
+
+    public void updateData(HashMap<String,String> queryValues){
+        SQLiteDatabase basisdata = this.getWritableDatabase();
+        ContentValues nilai = new ContentValues();
+        nilai.put("nama",queryValues.get("nama"));
+        nilai.put("telepon",queryValues.get("telepon"));
+//        basisdata.update("teman",nilai,"id=?",new String[]{queryValues.get("id")});
+        basisdata.update("teman",nilai,"nama=?",new String[]{queryValues.get("nama")});
+        basisdata.close();
+    }
+
     public ArrayList<HashMap<String,String>> getAllTeman(){
         ArrayList<HashMap<String,String>> daftarTeman;
         daftarTeman = new ArrayList<HashMap<String, String>>();
         String selectQuery = " Select * from teman";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery,null);
+        SQLiteDatabase basisdata = this.getReadableDatabase();
+        Cursor cursor = basisdata.rawQuery(selectQuery,null);
         if (cursor.moveToFirst()){
             do {
                 HashMap<String,String> map = new HashMap<>();
@@ -52,7 +68,7 @@ public class DBController extends SQLiteOpenHelper {
                 daftarTeman.add(map);
             }while (cursor.moveToNext());
         }
-        db.close();
+        basisdata.close();
         return daftarTeman;
     }
 }
